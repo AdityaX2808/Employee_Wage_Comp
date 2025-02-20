@@ -22,6 +22,8 @@ def check_attendance():
     }
     print(switch.get(attendance))
     print(f"Daily Wages: ${calculate_wage(attendance)}")
+    print(f"Monthly Wage: ${calculate_wage(attendance) * 20}")
+
 
 if __name__ == "__main__":
     check_attendance()
