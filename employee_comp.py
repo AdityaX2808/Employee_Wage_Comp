@@ -15,13 +15,17 @@ def check_attendance():
 
 def calculate_wage(attendance : int):
     WAGE_PER_HOUR = 20
-    ASSUME_FULL_DAY = 8
+    ASSUME_FULL_TIME = 8
+    ASSUME_PART_TIME = 4
 
     if attendance == 1:
-        daily_wage = ASSUME_FULL_DAY * WAGE_PER_HOUR
+        daily_wage = ASSUME_FULL_TIME * WAGE_PER_HOUR
 
     elif attendance == 0:
         daily_wage = 0
+    
+    else:
+        daily_wage = ASSUME_PART_TIME * WAGE_PER_HOUR    
 
     print(f"Daily Wage: ${daily_wage}")       
 
