@@ -1,30 +1,41 @@
 import random
 
-def calculate_wage(attendance : int):
-    FULL_TIME_HOUR = 8
-    PART_TIME_HOUR = 4
-    WAGE_PER_HOUR = 20
+#global variables
+FULL_TIME_HOUR = 8
+PART_TIME_HOUR = 4
+WAGE_PER_HOUR = 20
+TOTAL_WORKING_LIMIT  = 20
+TOTAL_WORKING_HOURS = 100
 
-    switch = {
-        0: 0,                                   #absent
-        1: FULL_TIME_HOUR * WAGE_PER_HOUR,      #full time
-        2: PART_TIME_HOUR * WAGE_PER_HOUR       #part time
-    }
+def calculate_monthly_wage():
+    total_wage = 0 
+    total_working_hours = 0
+    total_working_days = 0
 
-    return switch.get(attendance)
+    while total_working_hours < TOTAL_WORKING_HOURS and total_working_days < TOTAL_WORKING_LIMIT:
+        attendance = random.randint(0 , 2)
+        work_hours = {
+            0: 0, 
+            1: FULL_TIME_HOUR,
+            2: PART_TIME_HOUR
+        }
 
-def check_attendance():
-    attendance = random.randint(0 , 2)
-    switch = {
-        0: "Employee is Absent",
-        1: "Employee is Present (Full-Time)",
-        2: "Employee is Present (Part-Time)"
-    }
-    print(switch.get(attendance))
-    print(f"Daily Wages: ${calculate_wage(attendance)}")
-    print(f"Monthly Wage: ${calculate_wage(attendance) * 2 * 10}")
+        hours_worked = work_hours.get(attendance)
+
+        daily_wage = hours_worked * WAGE_PER_HOUR
+        total_wage += daily_wage
+        total_working_hours += hours_worked
+        total_working_days += 1 if hours_worked > 0 else 0
+
+        print(f"Day {total_working_days}: Attendance {attendance}, Worked {hours_worked} hours, Earned ${daily_wage}")
+
+    print("\nFinal Summary:")
+    print(f"Total Working Days: {total_working_days}")
+    print(f"Total Working Hours: {total_working_hours}")
+    print(f"Total Monthly Wage: ${total_wage}")
+
 
 
 if __name__ == "__main__":
-    check_attendance()
+    calculate_monthly_wage()
     print("Welcome to Employee Wage Computation Program")
