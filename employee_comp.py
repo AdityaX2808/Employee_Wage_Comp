@@ -17,7 +17,7 @@ class Employee_wage:
     def get_attendance(self):
         return random.randint(0, 2)  # 0 = Absent, 1 = Full-time, 2 = Part-time
 
-    def calculate_daily_wage(self, attendance):
+    def calculate_daily_attendance(self, attendance):
         work_hours = {
             0: 0,
             1: self.FULL_TIME_HOUR,
@@ -28,7 +28,7 @@ class Employee_wage:
     def calculate_monthly_wage(self):
         while self.total_working_hours < self.TOTAL_WORKING_HOURS and self.total_working_days < self.TOTAL_WORKING_LIMIT:
             attendance = self.get_attendance()
-            hours_worked = self.calculate_daily_wage(attendance)
+            hours_worked = self.calculate_daily_attendance(attendance)
             
             daily_wage = hours_worked * self.WAGE_PER_HOUR
             self.total_wage += daily_wage
